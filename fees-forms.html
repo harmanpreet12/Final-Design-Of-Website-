@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fees and Forms | Kids Fun N Learn Daycare</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    .enrollment-form-container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+      margin: 40px auto;
+      max-width: 1000px;
+    }
+    
+    .form-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .form-header h2 {
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    
+    .form-page {
+      display: none;
+    }
+    
+    .form-page.active {
+      display: block;
+    }
+    
+    .form-section {
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .form-section h3 {
+      color: var(--secondary);
+      margin-bottom: 15px;
+    }
+    
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 15px;
+    }
+    
+    .form-group {
+      flex: 1;
+      min-width: 250px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: var(--dark);
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-family: 'Nunito', sans-serif;
+    }
+    
+    .form-group textarea {
+      min-height: 80px;
+    }
+    
+    .form-navigation {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+    
+    .form-btn {
+      padding: 10px 25px;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .prev-btn {
+      background-color: #f1f1f1;
+      border: 1px solid #ddd;
+    }
+    
+    .next-btn, .submit-btn {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+    }
+    
+    .form-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    
+    .form-progress {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .progress-step {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      border-radius: 50%;
+      background-color: #ddd;
+      margin: 0 5px;
+      color: var(--dark);
+      font-weight: bold;
+    }
+    
+    .progress-step.active {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .required-field::after {
+      content: " *";
+      color: red;
+    }
+
+    .fee-info {
+      background-color: #f8f9fa;
+      padding: 30px;
+      border-radius: 15px;
+      margin: 40px auto;
+      max-width: 1000px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+    }
+
+    .fee-info h2 {
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .fee-info p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--dark);
+      text-align: center;
+    }
+    
+    @media (max-width: 768px) {
+      .enrollment-form-container {
+        padding: 20px;
+      }
+      
+      .form-group {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+ <!-- Hidden checkbox for mobile menu toggle -->
+  <input type="checkbox" id="mobile-menu-toggle">
+  <div class="menu-overlay"></div>
+
+  <header>
+    <!-- Logo and title container -->
+  <div class="logo-container">
+    <div class="logo-wrapper">
+      <img src="images/logo.png" alt="Logo" class="logo">
+    </div>
+    <span class="site-title">Kids Fun N Learn Daycare</span>
+  </div>
+
+    <!-- Hamburger Menu Button -->
+    <label for="mobile-menu-toggle" class="menu-toggle">
+      <div class="hamburger-line"></div>
+      <div class="hamburger-line"></div>
+      <div class="hamburger-line"></div>
+    </label>
+
+    <nav>
+      <ul class="navbar">
+        <li><a href="index.html">Home</a></li>
+        
+        <li class="dropdown">
+          <a href="about.html">About Us▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="our mission.html">Our Mission</a></li>
+            <li><a href="our philosophy.html">Our Philosophy</a></li>
+            <li><a href="meet our staff.html">Meet Our Staff</a></li>
+          </ul>
+        </li>
+        
+        <li class="dropdown">
+          <a href="programs.html">Programs▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="infant-program.html">Infant Program</a></li>
+            <li><a href="toddler-program.html">Toddler Program</a></li>
+            <li><a href="preschool-program.html">Preschool Program</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="enrollment.html">Enrollment Info▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="registration-process.html">Registration Process</a></li>
+            <li><a href="fees-forms.html">Fees and Forms</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="contact.html">Contact▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="contact-form.html">Contact Form</a></li>
+            <li><a href="location-map.html">Google Map</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <h1>Fees and Forms</h1>
+      <p class="hero-subtitle">Transparent pricing and required documents for enrollment</p>
+    </section>
+
+    <section class="fees-section">
+      <div class="fees-container">
+
+        <div class="fee-info">
+          <h2>Affordable Monthly Rates</h2>
+          <p>Kids Fun N Learn Daycare where parents enroll children from birth to preschool in full-time care across the province will be eligible for a flat parent fee of <strong>$326.25 per month</strong>, or approximately <strong>$15 per day</strong>.</p>
+        </div>
+
+        <div class="payment-info">
+          <h2>Payment Information</h2>
+          <ul>
+            <li><i class="fas fa-calendar-alt"></i> Payments due every month</li>
+            <li><i class="fas fa-money-check"></i> Accepts checks, cash, and e-Transfer</li>
+            <li><i class="fas fa-receipt"></i> Receipts provided for all payments</li>
+            <li><i class="fas fa-calendar-times"></i> 1 month notice required for withdrawal</li>
+          </ul>
+        </div>
+
+        <!-- Enrollment Form Section -->
+        <div class="enrollment-form-container">
+          <div class="form-header">
+            <h2>Application for Enrolment</h2>
+          </div>
+          
+          <div class="form-progress">
+            <span class="progress-step active">1</span>
+            <span class="progress-step">2</span>
+            <span class="progress-step">3</span>
+          </div>
+          
+          <form id="enrollmentForm">
+            <!-- Page 1 - General Information -->
+            <div class="form-page active" id="page1">
+              <div class="form-section">
+                <h3>General Information</h3>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required-field">Referred By</label>
+                    <input type="text" name="referred_by">
+                  </div>
+                  <div class="form-group">
+                    <label class="required-field">Date of Enrolment</label>
+                    <input type="date" name="enrolment_date">
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required-field">First Day Attending</label>
+                    <input type="date" name="first_day">
+                  </div>
+                  <div class="form-group">
+                    <label>Date of Termination</label>
+                    <input type="date" name="termination_date">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-section">
+                <h3>Child's Personal Information</h3>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required-field">Child's Name</label>
+                    <input type="text" name="child_name">
+                  </div>
+                  <div class="form-group">
+                    <label class="required-field">Child's Address</label>
+                    <input type="text" name="child_address">
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required-field">Date of Birth</label>
+                    <input type="date" name="child_dob">
+                  </div>
+                  <div class="form-group">
+                    <label class="required-field">Sex</label>
+                    <select name="child_sex">
+                      <option value="">Select</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-section">
+                <h3>Parent Information</h3>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required-field">Mother's Name</label>
+                    <input type="text" name="mother_name">
+                  </div>
+                  <div class="form-group">
+                    <label>Father's Name</label>
+                    <input type="text" name="father_name">
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required-field">Mother's Address</label>
+                    <input type="text" name="mother_address">
+                  </div>
+                  <div class="form-group">
+                    <label>Father's Address</label>
+                    <input type="text" name="father_address">
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required-field">Mother's Postal Code</label>
+                    <input type="text" name="mother_postal">
+                  </div>
+                  <div class="form-group">
+                    <label>Father's Postal Code</label>
+                    <input type="text" name="father_postal">
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required-field">Mother's Contact Number</label>
+                    <input type="tel" name="mother_phone">
+                  </div>
+                  <div class="form-group">
+                    <label>Father's Contact Number</label>
+                    <input type="tel" name="father_phone">
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Mother's Place of Employment</label>
+                    <input type="text" name="mother_employer">
+                  </div>
+                  <div class="form-group">
+                    <label>Father's Place of Employment</label>
+                    <input type="text" name="father_employer">
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Mother's Work Phone</label>
+                    <input type="tel" name="mother_work_phone">
+                  </div>
+                  <div class="form-group">
+                    <label>Father's Work Phone</label>
+                    <input type="tel" name="father_work_phone">
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Mother's Work Address</label>
+                    <input type="text" name="mother_work_address">
+                  </div>
+                  <div class="form-group">
+                    <label>Father's Work Address</label>
+                    <input type="text" name="father_work_address">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-section">
+                <h3>Alternate Emergency Contacts</h3>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required-field">Emergency Contact 1 Name</label>
+                    <input type="text" name="emergency1_name">
+                  </div>
+                  <div class="form-group">
+                    <label>Emergency Contact 2 Name</label>
+                    <input type="text" name="emergency2_name">
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required-field">Emergency Contact 1 Address</label>
+                    <input type="text" name="emergency1_address">
+                  </div>
+                  <div class="form-group">
+                    <label>Emergency Contact 2 Address</label>
+                    <input type="text" name="emergency2_address">
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required-field">Emergency Contact 1 Relationship</label>
+                    <input type="text" name="emergency1_relation">
+                  </div>
+                  <div class="form-group">
+                    <label>Emergency Contact 2 Relationship</label>
+                    <input type="text" name="emergency2_relation">
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required-field">Emergency Contact 1 Phone</label>
+                    <input type="tel" name="emergency1_phone">
+                  </div>
+                  <div class="form-group">
+                    <label>Emergency Contact 2 Phone</label>
+                    <input type="tel" name="emergency2_phone">
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="required-field">Parents/Guardians Email Address</label>
+                  <input type="email" name="parent_email">
+                </div>
+              </div>
+              
+              <div class="form-navigation">
+                <button type="button" class="form-btn next-btn" onclick="nextPage(1, 2)">Next Page</button>
+              </div>
+            </div>
+            
+            <!-- Page 2 - Authorization and Care Information -->
+            <div class="form-page" id="page2">
+              <div class="form-section">
+                <h3>Authorized Pickup Persons</h3>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required-field">Name</label>
+                    <input type="text" name="pickup1_name">
+                  </div>
+                  <div class="form-group">
+                    <label class="required-field">Relationship</label>
+                    <input type="text" name="pickup1_relation">
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="required-field">Address</label>
+                  <input type="text" name="pickup1_address">
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="pickup2_name">
+                  </div>
+                  <div class="form-group">
+                    <label>Relationship</label>
+                    <input type="text" name="pickup2_relation">
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label>Address</label>
+                  <input type="text" name="pickup2_address">
+                </div>
+              </div>
+              
+              <div class="form-section">
+                <h3>Security Notice</h3>
+                <p><strong>Any Person(s) child should not be released to:</strong></p>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="no_release1_name">
+                  </div>
+                  <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="no_release2_name">
+                  </div>
+                </div>
+                <p><em>If the above is that of a parent, please provide necessary legal documents.</em></p>
+              </div>
+              
+              <div class="form-section">
+                <h3>Schedule Information</h3>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required-field">Time child will arrive at centre</label>
+                    <input type="time" name="arrival_time">
+                  </div>
+                  <div class="form-group">
+                    <label class="required-field">Time child will be picked up</label>
+                    <input type="time" name="pickup_time">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-section">
+                <h3>Eating Habits</h3>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Eating Habits</label>
+                    <select name="eating_habits">
+                      <option value="">Select</option>
+                      <option value="Good">Good</option>
+                      <option value="Fair">Fair</option>
+                      <option value="Poor">Poor</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label>Is there anything we should know about what or when your child eats? (likes, dislikes)</label>
+                  <textarea name="eating_notes"></textarea>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Any food allergies we should be aware of?</label>
+                    <input type="text" name="food_allergies">
+                  </div>
+                  <div class="form-group">
+                    <label>Any Special diet?</label>
+                    <input type="text" name="special_diet">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-section">
+                <h3>Toileting Information</h3>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Is your child toilet trained?</label>
+                    <select name="toilet_trained">
+                      <option value="">Select</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                      <option value="In Progress">In Progress</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Needs help?</label>
+                    <select name="toilet_help">
+                      <option value="">Select</option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                      <option value="Sometimes">Sometimes</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label>Other comments to assist us in this area?</label>
+                  <textarea name="toilet_notes"></textarea>
+                </div>
+              </div>
+              
+              <div class="form-section">
+                <h3>Sleeping Habits</h3>
+                <div class="form-group">
+                  <label>Special toys, blankets, etc</label>
+                  <textarea name="sleeping_habits"></textarea>
+                </div>
+              </div>
+              
+              <div class="form-section">
+                <h3>Social Development</h3>
+                <div class="form-group">
+                  <label>Describe previous/present childcare arrangement</label>
+                  <textarea name="childcare_history"></textarea>
+                </div>
+              </div>
+              
+              <div class="form-navigation">
+                <button type="button" class="form-btn prev-btn" onclick="prevPage(2, 1)">Previous Page</button>
+                <button type="button" class="form-btn next-btn" onclick="nextPage(2, 3)">Next Page</button>
+              </div>
+            </div>
+            
+            <!-- Page 3 - Health and Medical Information -->
+            <div class="form-page" id="page3">
+              <div class="form-section">
+                <h3>Medical History</h3>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Previous serious illness (Hospitalization)</label>
+                    <div>
+                      <label><input type="radio" name="serious_illness" value="Yes"> Yes</label>
+                      <label><input type="radio" name="serious_illness" value="No"> No</label>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label>If yes, Date & Diagnostic</label>
+                  <textarea name="illness_details"></textarea>
+                </div>
+                
+                <div class="form-group">
+                  <label>Special Health needs</label>
+                  <textarea name="special_health_needs"></textarea>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Has this child had any medical or emotional conditions requiring or receiving treatment or supervision?</label>
+                    <div>
+                      <label><input type="radio" name="medical_conditions" value="Yes"> Yes</label>
+                      <label><input type="radio" name="medical_conditions" value="No"> No</label>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label>If yes, please explain</label>
+                  <textarea name="medical_conditions_details"></textarea>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Is this child on any regular medication?</label>
+                    <div>
+                      <label><input type="radio" name="regular_medication" value="Yes"> Yes</label>
+                      <label><input type="radio" name="regular_medication" value="No"> No</label>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label>If yes, please specify</label>
+                  <textarea name="medication_details"></textarea>
+                </div>
+              </div>
+              
+              <div class="form-section">
+                <h3>Health Record</h3>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required-field">Name of the child</label>
+                    <input type="text" name="health_child_name">
+                  </div>
+                  <div class="form-group">
+                    <label class="required-field">Name of Mother</label>
+                    <input type="text" name="health_mother_name">
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Name of Father</label>
+                    <input type="text" name="health_father_name">
+                  </div>
+                  <div class="form-group">
+                    <label class="required-field">Date of Birth</label>
+                    <input type="date" name="health_dob">
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="required-field">Sex</label>
+                    <select name="health_sex">
+                      <option value="">Select</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Family Doctor's Name</label>
+                    <input type="text" name="doctor_name">
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Doctor's Contact Number</label>
+                    <input type="tel" name="doctor_phone">
+                  </div>
+                  <div class="form-group">
+                    <label class="required-field">Alberta Health Card Number</label>
+                    <input type="text" name="health_card">
+                  </div>
+                </div>
+                
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Is this child's immunization up to date?</label>
+                    <div>
+                      <label><input type="radio" name="immunization" value="Yes"> Yes</label>
+                      <label><input type="radio" name="immunization" value="No"> No</label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Initial</label>
+                    <input type="text" name="immunization_initials">
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label>Allergies/Medical conditions/diet restrictions (specify)</label>
+                  <textarea name="allergies_details"></textarea>
+                </div>
+              </div>
+              
+              <div class="form-navigation">
+                <button type="button" class="form-btn prev-btn" onclick="prevPage(3, 2)">Previous Page</button>
+                <button type="submit" class="form-btn submit-btn">Submit Application</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- End of Enrollment Form Section -->
+
+        <div class="forms-download">
+          <h2>Required Forms</h2>
+          <div class="form-cards">
+            <div class="form-card">
+              <i class="fas fa-file-signature"></i>
+              <h3>Enrollment Application</h3>
+              <p>Complete this form to register your child</p>
+            </div>
+            <div class="form-card">
+              <i class="fas fa-heartbeat"></i>
+              <h3>Medical Consent</h3>
+              <p>Authorization for emergency medical care</p>
+            </div>
+            <div class="form-card">
+              <i class="fas fa-utensils"></i>
+              <h3>Food Allergy Form</h3>
+              <p>Required if child has dietary restrictions</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="financial-assistance">
+      <h2>Financial Assistance Options</h2>
+      <p>We accept subsidies from the following programs:</p>
+      <div class="assistance-options">
+        <div class="option">
+          <i class="fas fa-hands-helping"></i>
+          <h3>Alberta Child Care Subsidy</h3>
+          <p>Income-based financial assistance for eligible families</p>
+        </div>
+        <div class="option">
+          <i class="fas fa-briefcase"></i>
+          <h3>Employer Sponsorship</h3>
+          <p>Some employers offer childcare benefits</p>
+        </div>
+        <div class="option">
+          <i class="fas fa-university"></i>
+          <h3>Student Discounts</h3>
+          <p>Special rates for full-time students</p>
+        </div>
+      </div>
+      <a href="contact.html" class="assistance-btn">Learn More About Subsidies</a>
+    </section>
+  </main>
+
+<footer>
+  <div class="footer-content">
+    <!-- Left: Logo + Social -->
+    <div class="footer-section">
+      <h3>Kids Fun N Learn Daycare</h3>
+      <img src="images/logo.png" alt="Kids Fun N Learn Logo" class="footer-logo">
+      <div class="social-icons" style="display: flex; gap: 20px; font-size: 1.8rem;">
+        <p>Follow us on:</p>
+        <a href="https://facebook.com/" target="_blank">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://instagram.com/" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div> 
+    </div>
+    
+    <!-- Middle: Helpful Links -->
+      <div class="footer-section">
+        <h3>Helpful Links</h3>
+        <ul>
+          <li><a href="location-map.html">Location</a></li>        
+          <li><a href="programs.html">Curriculum</a></li>
+          <li><a href="enrollment.html">Enquire</a></li>
+          <li><a href="fees-forms.html">Registration Form</a></li>
+          <li><a href="about.html">Who We Are</a></li>
+        </ul>    
+      </div>
+
+    <!-- Right: Contact -->
+    <div class="footer-section">
+      <h3>Get in Touch</h3>
+      <p><i class="fas fa-school"></i> <strong>Kids Fun N Learn Centre</strong></p>
+      <p><i class="fas fa-clock"></i> Providing care from 6:30 a.m. to 6:00 p.m</p>
+      <p><i class="fas fa-map-marker-alt"></i> 1810 30th Street SE, Calgary, AB, T2B2K5</p>
+      <p><i class="fas fa-phone"></i> Daycare: <a href="tel:403-351-7581">403-351-7581</a></p>
+      <p><i class="fas fa-mobile-alt"></i> Cell: <a href="tel:587-664-3160">587-664-3160</a></p>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:kidsfunnlearndaycare@gmail.com">kidsfunnlearndaycare@gmail.com</a></p>
+    </div>
+  </div>
+  
+  <div class="copyright">
+    © 2025 Kids Fun N Learn Daycare. All rights reserved.
+  </div>
+</footer>
+
+  <script>
+    // Form navigation functions
+    function showPage(pageNumber) {
+      // Hide all pages
+      document.querySelectorAll('.form-page').forEach(page => {
+        page.classList.remove('active');
+      });
+      
+      // Show the selected page
+      document.getElementById('page' + pageNumber).classList.add('active');
+      
+      // Update progress steps
+      document.querySelectorAll('.progress-step').forEach((step, index) => {
+        if (index < pageNumber) {
+          step.classList.add('active');
+        } else {
+          step.classList.remove('active');
+        }
+      });
+    }
+    
+    function nextPage(current, next) {
+      // Validate current page before proceeding
+      if (validatePage(current)) {
+        showPage(next);
+        window.scrollTo(0, 0);
+      }
+    }
+    
+    function prevPage(current, prev) {
+      showPage(prev);
+      window.scrollTo(0, 0);
+    }
+    
+    function validatePage(pageNumber) {
+      let isValid = true;
+      const currentPage = document.getElementById('page' + pageNumber);
+      
+      // Check all required fields in this page
+      currentPage.querySelectorAll('[required]').forEach(field => {
+        if (!field.value.trim()) {
+          isValid = false;
+          field.style.borderColor = 'red';
+        } else {
+          field.style.borderColor = '#ddd';
+        }
+      });
+      
+      if (!isValid) {
+        alert('Please fill in all required fields before proceeding.');
+      }
+      
+      return isValid;
+    }
+    
+    // Form submission
+    document.getElementById('enrollmentForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      if (validatePage(3)) {
+        alert('Application submitted successfully! We will contact you soon.');
+        this.reset();
+        showPage(1);
+      }
+    });
+  </script>
+</body>
+</html>
